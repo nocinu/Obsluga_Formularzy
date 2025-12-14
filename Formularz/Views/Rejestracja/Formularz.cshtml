@@ -1,0 +1,71 @@
+﻿@using FormularzRejestracji.Models
+@model FormularzRejestracji.Models.DaneRejestracji
+
+@{
+    ViewData["Title"] = "Formularz Rejestracyjny";
+}
+
+<h1>Formularz Rejestracyjny</h1>
+
+<form asp-action="Formularz" method="post">
+    <div asp-validation-summary="All" style="color: red; margin-bottom: 20px;"></div>
+
+    <div>
+        <label asp-for="Imie">Imię:</label>
+        <input asp-for="Imie" />
+        <span asp-validation-for="Imie" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Nazwisko">Nazwisko:</label>
+        <input asp-for="Nazwisko" />
+        <span asp-validation-for="Nazwisko" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" type="email" />
+        <span asp-validation-for="Email" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Haslo">Hasło:</label>
+        <input asp-for="Haslo" type="password" />
+        <span asp-validation-for="Haslo" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="PotwierdzenieHasla">Potwierdzenie Hasła:</label>
+        <input asp-for="PotwierdzenieHasla" type="password" />
+        <span asp-validation-for="PotwierdzenieHasla" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Telefon">Nr Telefonu:</label>
+        <input asp-for="Telefon" type="tel" />
+        <span asp-validation-for="Telefon" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Wiek">Wiek:</label>
+        <input asp-for="Wiek" type="number" />
+        <span asp-validation-for="Wiek" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Miasto">Miasto:</label>
+        <select asp-for="Miasto" asp-items="Html.GetEnumSelectList<DaneRejestracji.Miasta>()">
+            <option value="">-- Wybierz miasto --</option>
+        </select>
+        <span asp-validation-for="Miasto" style="color: red;"></span>
+    </div>
+
+    <button type="submit">Wyślij</button>
+    <button type="reset">Wyczyść</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
